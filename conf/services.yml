@@ -7,3 +7,10 @@ RedisCache:
   parameters:
     - $cache.redis.host
     - $cache.redis.port
+ApplicationCache:
+  class: Revolution\Cache\Factory\ApplicationCacheFactory
+  aliases:
+    - Pantono\Contracts\Application\Cache\ApplicationCacheInterface
+  parameters:
+    - "@Locator"
+    - $cache.default
