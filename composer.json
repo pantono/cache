@@ -7,10 +7,7 @@
     "pantono/contracts": "^1.0",
     "pantono/utilities": "^1.0",
     "robmorgan/phinx": "^0.16.3",
-    "symfony/event-dispatcher": "^7.0",
-    "symfony/yaml": "^7.0",
     "symfony/cache": "^7.0",
-    "pantono/database": "^1.0",
     "psr/cache": "^3.0",
     "predis/predis": "^3.2"
   },
