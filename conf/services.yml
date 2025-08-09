@@ -1,0 +1,9 @@
+FilesystemCache:
+  class: Pantono\Cache\Factory\FilesystemCacheFactory
+  parameters:
+    - $cache.filesystem.path
+RedisCache:
+  class: Pantono\Cache\Factory\RedisCacheFactory
+  parameters:
+    - $cache.redis.host
+    - $cache.redis.port
