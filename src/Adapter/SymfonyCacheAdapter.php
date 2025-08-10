@@ -5,6 +5,7 @@ namespace Pantono\Cache\Adapter;
 use PHPUnit\TextUI\Application;
 use Pantono\Contracts\Application\Cache\ApplicationCacheInterface;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
+use Psr\SimpleCache\InvalidArgumentException;
 
 class SymfonyCacheAdapter implements ApplicationCacheInterface
 {
@@ -51,6 +52,12 @@ class SymfonyCacheAdapter implements ApplicationCacheInterface
         return $items;
     }
 
+    /**
+     * @param iterable<string,mixed> $values
+     * @param \DateInterval|int|null $ttl
+     * @return bool
+     * @throws InvalidArgumentException
+     */
     public function setMultiple(iterable $values, \DateInterval|int|null $ttl = null): bool
     {
         foreach ($values as $key => $value) {
