@@ -21,6 +21,11 @@ class SymfonyCacheAdapter implements ApplicationCacheInterface
         return $this->adapter->getItem($key);
     }
 
+    public function getCallback(string $key, callable $callback): mixed
+    {
+        return $this->adapter->get($key, $callback);
+    }
+
     public function set(string $key, mixed $value, \DateInterval|int|null $ttl = null): bool
     {
         $item = $this->adapter->getItem($key);
