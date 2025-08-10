@@ -7,6 +7,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Pantono\Utilities\ApplicationHelper;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 use Predis\Client;
+use Pantono\Cache\Adapter\SymfonyCacheAdapter;
 
 class RedisCacheFactory implements FactoryInterface
 {
@@ -19,13 +20,12 @@ class RedisCacheFactory implements FactoryInterface
         $this->port = $port;
     }
 
-    public function createInstance(): RedisAdapter
+    public function createInstance(): SymfonyCacheAdapter
     {
-        $client = new Client([
+        return new SymfonyCacheAdapter(new RedisAdapter(new Client([
             'scheme' => 'tcp',
             'host' => $this->host,
             'port' => $this->port
-        ]);
-        return new RedisAdapter($client);
+        ])));
     }
 }
