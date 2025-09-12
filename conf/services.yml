@@ -8,7 +8,7 @@ RedisCache:
     - $cache.redis.host
     - $cache.redis.port
 ApplicationCache:
-  class: Revolution\Cache\Factory\ApplicationCacheFactory
+  class: Pantono\Cache\Factory\ApplicationCacheFactory
   aliases:
     - Pantono\Contracts\Application\Cache\ApplicationCacheInterface
   parameters:
