@@ -29,6 +29,9 @@ class ApplicationCacheFactory implements FactoryInterface
         if (strtolower($type) == 'file' || $type === FilesystemCacheFactory::class) {
             $type = FilesystemCacheFactory::class;
         }
+        /**
+         * @var ?SymfonyCacheAdapter $class
+         */
         $class = $this->locator->getClassAutoWire($type);
         if ($class) {
             return $class;
