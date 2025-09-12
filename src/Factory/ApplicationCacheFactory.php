@@ -7,6 +7,7 @@ use Symfony\Component\Cache\Adapter\RedisAdapter;
 use Predis\Client;
 use Pantono\Contracts\Locator\LocatorInterface;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
+use Pantono\Cache\Adapter\SymfonyCacheAdapter;
 
 class ApplicationCacheFactory implements FactoryInterface
 {
@@ -19,7 +20,7 @@ class ApplicationCacheFactory implements FactoryInterface
         $this->cacheType = $cacheType;
     }
 
-    public function createInstance(): AbstractAdapter
+    public function createInstance(): SymfonyCacheAdapter
     {
         $type = $this->cacheType;
         if (strtolower($type) === 'redis' || $type === RedisAdapter::class || $type === RedisCacheFactory::class) {
