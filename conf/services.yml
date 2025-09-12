@@ -12,5 +12,5 @@ ApplicationCache:
   aliases:
     - Pantono\Contracts\Application\Cache\ApplicationCacheInterface
   parameters:
-    - "@Locator"
+    - "@ServiceLocator"
     - $cache.default
