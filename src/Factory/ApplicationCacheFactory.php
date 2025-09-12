@@ -30,9 +30,6 @@ class ApplicationCacheFactory implements FactoryInterface
         }
         $class = $this->locator->getClassAutoWire($type);
         if ($class) {
-            if ($class instanceof FactoryInterface) {
-                return $class->createInstance();
-            }
             return $class;
         }
 
