@@ -2,16 +2,15 @@
 
 namespace Pantono\Cache\Adapter;
 
-use PHPUnit\TextUI\Application;
 use Pantono\Contracts\Application\Cache\ApplicationCacheInterface;
-use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Psr\SimpleCache\InvalidArgumentException;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 class SymfonyCacheAdapter implements ApplicationCacheInterface
 {
-    protected AbstractAdapter $adapter;
+    protected AdapterInterface $adapter;
 
-    public function __construct(AbstractAdapter $adapter)
+    public function __construct(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
     }
