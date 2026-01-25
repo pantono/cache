@@ -14,3 +14,5 @@ ApplicationCache:
   parameters:
     - "@ServiceLocator"
     - $cache.default
+EphemeralCache:
+  class: Pantono\Cache\Factory\EphemeralCacheFactory
