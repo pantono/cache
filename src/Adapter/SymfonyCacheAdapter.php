@@ -3,10 +3,11 @@
 namespace Pantono\Cache\Adapter;
 
 use Pantono\Contracts\Application\Cache\ApplicationCacheInterface;
+use Pantono\Contracts\Application\Cache\EphemeralCacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
-class SymfonyCacheAdapter implements ApplicationCacheInterface
+class SymfonyCacheAdapter implements ApplicationCacheInterface, EphemeralCacheInterface
 {
     protected AdapterInterface $adapter;
 
