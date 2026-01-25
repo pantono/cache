@@ -5,7 +5,6 @@ namespace Pantono\Cache\Factory;
 use Pantono\Contracts\Locator\FactoryInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Pantono\Utilities\ApplicationHelper;
-use Symfony\Component\Cache\Adapter\Psr16Adapter;
 use Pantono\Cache\Adapter\SymfonyCacheAdapter;
 
 class FilesystemCacheFactory implements FactoryInterface
