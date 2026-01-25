@@ -16,3 +16,5 @@ ApplicationCache:
     - $cache.default
 EphemeralCache:
   class: Pantono\Cache\Factory\EphemeralCacheFactory
+  aliases:
+    - Pantono\Contracts\Application\Cache\EphemeralCacheInterface
