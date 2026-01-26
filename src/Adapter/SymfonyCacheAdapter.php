@@ -6,14 +6,15 @@ use Pantono\Contracts\Application\Cache\ApplicationCacheInterface;
 use Pantono\Contracts\Application\Cache\EphemeralCacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 
 class SymfonyCacheAdapter implements ApplicationCacheInterface, EphemeralCacheInterface
 {
-    protected AdapterInterface $adapter;
+    protected TagAwareAdapter $adapter;
 
-    public function __construct(AdapterInterface $adapter)
+    public function __construct(AdapterInterface $adapter, ?AdapterInterface $tagAdapter = null)
     {
-        $this->adapter = $adapter;
+        $this->adapter = new TagAwareAdapter($adapter, $tagAdapter);
     }
 
     public function get(string $key, mixed $default = null): mixed
@@ -21,9 +22,24 @@ class SymfonyCacheAdapter implements ApplicationCacheInterface, EphemeralCacheIn
         return $this->adapter->getItem($key);
     }
 
-    public function getCallback(string $key, callable $callback): mixed
+    /**
+     * @param string $key
+     * @param callable $callback
+     * @param array<string> $tags
+     * @return mixed
+     * @throws \Psr\Cache\CacheException
+     * @throws \Psr\Cache\InvalidArgumentException
+     */
+    public function getCallback(string $key, callable $callback, array $tags = []): mixed
     {
-        return $this->adapter->get($key, $callback);
+        $item = $this->adapter->getItem($key);
+        if (!$item->isHit()) {
+            $data = $callback();
+            $item->set($data);
+            $item->tag($tags);
+            $this->adapter->save($item);
+        }
+        return $item->get();
     }
 
     public function set(string $key, mixed $value, \DateInterval|int|null $ttl = null): bool
