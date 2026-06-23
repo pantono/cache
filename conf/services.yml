@@ -2,6 +2,8 @@ FilesystemCache:
   class: Pantono\Cache\Factory\FilesystemCacheFactory
   parameters:
     - $cache.filesystem.path
+  aliases:
+    - Pantono\Contracts\Application\Cache\FilesystemCacheInterface
 RedisCache:
   class: Pantono\Cache\Factory\RedisCacheFactory
   parameters:
